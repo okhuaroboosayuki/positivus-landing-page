@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+
+::root {
+  --black: #191a23;
+  --lime-green: #b9ff66;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  padding: 50px 100px 0 100px;
+  width: 100%;
+  height: 100vh;
+}
+
+header {
+  text-transform: capitalize;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  /* justify-content: space-between; */
+  width: 100%;
+}
+
+header .logo a img {
+  width: 15rem;
+}
+
+.logo {
+  flex: 1;
+}
+
+.logo,
+nav {
+  flex-shrink: 1;
+  flex-basis: 200px;
+}
+
+nav {
+  flex: 3;
+}
+
+nav ul {
+  display: flex;
+  align-content: center;
+}
+
+.list_item {
+  margin-right: 20px;
+}
+
+.list_item a {
+  padding: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.list_item a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.01rem;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.3s ease-in-out;
+}
+
+.list_item a:hover::after {
+  width: 100%;
+}
+
+.list_btn {
+  margin-left: 20px;
+  padding: 1rem;
+  cursor: pointer;
+  text-transform: none !important;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
