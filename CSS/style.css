@@ -30,6 +30,16 @@ body {
   height: 100vh;
 }
 
+.hidden {
+  opacity: 0;
+  transition: all 1.6s;
+}
+
+.show {
+  opacity: 1;
+}
+
+/* header */
 header {
   text-transform: capitalize;
   display: flex;
@@ -44,7 +54,7 @@ header .logo a img {
 
 .logo {
   flex: 1;
-  padding-left: 70px;
+  padding-left: 40px;
 }
 
 .logo,
@@ -113,6 +123,8 @@ main {
 
 .hero {
   display: flex;
+  justify-content: center;
+  gap: 6.3rem;
 }
 
 .hero_left {
@@ -120,12 +132,12 @@ main {
   flex-direction: column;
   align-items: flex-start;
   gap: 35px;
-  margin-left: 70px;
 }
 
 .hero_left h3 {
-  font-size: 60px;
-  width: 75%;
+  font-size: 4vmax;
+  max-width: 600px;
+  text-wrap: pretty;
 }
 
 .hero_left p,
@@ -134,7 +146,8 @@ main {
 }
 
 .hero_left p {
-  width: 65%;
+  max-width: 500px;
+  text-wrap: pretty;
 }
 
 .hero_left button {
@@ -154,11 +167,19 @@ main {
   border: 1px solid var(--black);
 }
 
-.hero_right {
-  margin-right: 50px;
+.hero_right img {
+  max-width: 100%;
 }
 
-/* keyframes */
+/* client scroll */
+.client_scroll {
+  margin-top: 50rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* keyframes animations */
 @keyframes slideInFromRight {
   from {
     transform: translateX(100%);
@@ -170,10 +191,29 @@ main {
   }
 }
 
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slideIn {
+  animation: slideInFromTop 1.5s ease-out;
+}
+
 /* media queries */
 @media screen and (max-width: 1400px) {
   nav {
     flex-basis: 500px;
+  }
+
+  .logo {
+    padding-left: 0;
   }
 }
 
@@ -208,7 +248,7 @@ main {
     justify-content: space-between;
     cursor: pointer;
     transition: transform 0.3s ease;
-    z-index: 200;
+    z-index: 500;
   }
 
   .bar {
@@ -247,6 +287,7 @@ main {
     padding: 3rem;
     border-left: 1px solid color-mix(in srgb, #fff 50%, var(--black) 50%);
     animation: slideInFromRight 0.5s ease-out;
+    z-index: 500;
   }
 
   .list_item,
@@ -254,7 +295,85 @@ main {
     margin-left: 0;
   }
 
+  .list_btn {
+    padding-left: 1.5px;
+  }
+
   .list_item a {
     padding: 1rem 0;
+  }
+}
+
+@media screen and (max-width: 885px) {
+  body {
+    padding: 2rem;
+  }
+
+  .hamburger_menu {
+    right: 3rem;
+  }
+
+  /* hero section */
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    position: relative;
+  }
+
+  .hero_left h3 {
+    font-size: 41px;
+  }
+
+  .hero_left h3,
+  .hero_left p {
+    max-width: 100%;
+  }
+
+  .hero_left p,
+  .hero_left button,
+  .hero_right img {
+    position: absolute;
+  }
+
+  .hero_left p {
+    top: 31.5rem;
+  }
+
+  .hero_left button {
+    top: 100rem;
+  }
+
+  .hero_right img {
+    left: 0;
+    height: 400px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    padding: 2rem 1rem;
+  }
+
+  .hamburger_menu {
+    right: 1.5rem;
+  }
+
+  .nav_list_container #list.menu_open {
+    width: 100%;
+    right: 0;
+  }
+
+  .hero_left h3 {
+    font-size: 35px;
+  }
+
+  .hero_right img {
+    top: 8rem;
+  }
+
+  .hero_left p {
+    top: 33rem;
   }
 }
