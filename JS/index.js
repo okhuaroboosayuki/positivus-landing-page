@@ -1,13 +1,9 @@
 "strict";
 
-// global variables
+// Hamburger Menu
 const menuIcon = document.querySelector("#hamburger_menu");
 const navListElement = document.querySelector("#list");
-const clientRow = document.querySelector(".client_row");
 
-const hiddenEl = document.querySelectorAll(".hidden");
-
-// Hamburger Menu
 menuIcon.addEventListener("click", function () {
   this.classList.toggle("open");
 
@@ -18,7 +14,10 @@ menuIcon.addEventListener("click", function () {
   }
 });
 
-// scroll handling
+// SCROLL REVEAL HANDLING
+const clientRow = document.querySelector(".client_row");
+const hiddenEl = document.querySelectorAll(".hidden");
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) entry.target.classList.add("show");
@@ -28,10 +27,11 @@ const observer = new IntersectionObserver((entries) => {
 
 hiddenEl.forEach((el) => observer.observe(el));
 
+// 1. client scroll
 window.addEventListener("scroll", function () {
   const scrollPosition = this.scrollY;
 
-  const speed = 0.3;
+  const speed = 0.15;
 
   const translateValue = scrollPosition * speed;
 
