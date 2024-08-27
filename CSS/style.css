@@ -557,7 +557,7 @@ main {
   }
 
   .card .card_right img {
-    width: 128px;
+    max-width: 128px;
   }
 }
 
@@ -598,6 +598,20 @@ main {
 
   .client_row_container {
     top: 56rem;
+  }
+
+  .services {
+    top: 70rem;
+    padding: 0 10px;
+  }
+
+  .card {
+    position: relative;
+  }
+
+  .card .card_left div:nth-child(1) h4:nth-child(1) {
+    position: absolute;
+    top: 1rem;
   }
 
   .card .card_left div:nth-child(2) span {
