@@ -27,7 +27,7 @@ const observer = new IntersectionObserver((entries) => {
 
 hiddenEl.forEach((el) => observer.observe(el));
 
-// 1. client scroll
+// client scroll
 window.addEventListener("scroll", function () {
   const scrollPosition = this.scrollY;
 
@@ -35,5 +35,9 @@ window.addEventListener("scroll", function () {
 
   const translateValue = scrollPosition * speed;
 
-  clientRow.style.transform = `translateX(-${translateValue}px)`;
+  if (this.innerWidth <= 500) {
+    clientRow.style.transform = "translate(0)";
+  } else {
+    clientRow.style.transform = `translateX(-${translateValue}px)`;
+  }
 });
