@@ -31,9 +31,15 @@ body {
   height: 100vh;
 }
 
+button {
+  padding: 1rem 2rem;
+  outline: none;
+  cursor: pointer;
+}
+
 .hidden {
   opacity: 0;
-  transition: all 1.6s;
+  transition: all 2.5s;
 }
 
 .show {
@@ -152,9 +158,6 @@ main {
 }
 
 .hero_left button {
-  padding: 1rem 2rem;
-  outline: none;
-  cursor: pointer;
   background-color: var(--black);
   color: #fff;
   border: 1px solid #fff;
@@ -311,6 +314,66 @@ main {
   color: var(--card-bg-grey);
 }
 
+/* call to action */
+.c_t_a {
+  margin-top: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.c_t_a .bg_color {
+  position: absolute;
+  height: 90%;
+  width: 100%;
+  border-radius: 45px;
+  background-color: var(--card-bg-grey);
+}
+
+.c_t_a-left,
+.c_t_a-right {
+  z-index: 500;
+  flex: 1;
+}
+
+.c_t_a-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 26px;
+  padding: 0 4rem;
+}
+
+.c_t_a-left h3 {
+  font-size: 30px;
+}
+
+.c_t_a-left p {
+  font-size: 18px;
+}
+
+.c_t_a-left button {
+  background-color: var(--black);
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  transition: 0.3s ease-in;
+  font-size: 20px;
+}
+
+.c_t_a-left button:hover {
+  background-color: #fff;
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
+.c_t_a-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* keyframes animations */
 @keyframes slideInFromRight {
   from {
@@ -323,9 +386,9 @@ main {
   }
 }
 
-@keyframes slideInFromTop {
+@keyframes slideInFromBottom {
   0% {
-    transform: translateY(-100%);
+    transform: translateY(100%);
     opacity: 0;
   }
   100% {
@@ -335,7 +398,7 @@ main {
 }
 
 .slideIn {
-  animation: slideInFromTop 1.5s ease-out;
+  animation: slideInFromBottom 1.5s ease-out;
 }
 
 /* media queries */
@@ -484,7 +547,7 @@ main {
 @media screen and (max-width: 885px) {
   body {
     padding: 2rem;
-    position: relative;
+    position: absolute;
   }
 
   .hamburger_menu {
@@ -554,10 +617,37 @@ main {
   .cards_container .card {
     width: 100%;
     gap: 0;
+    padding: 3rem 0.5rem;
   }
 
   .card .card_right img {
     max-width: 128px;
+  }
+
+  .c_t_a {
+    top: 195rem;
+    left: 0;
+    right: 0;
+    margin: 0 20px;
+  }
+
+  .c_t_a-left {
+    padding: 0 0 0 1.5rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .c_t_a {
+    padding: 3rem 1.6rem;
+    margin: 0;
+  }
+
+  .c_t_a .bg_color {
+    height: 100%;
+  }
+
+  .c_t_a-right {
+    display: none;
   }
 }
 
@@ -620,5 +710,13 @@ main {
 
   .card .card_right {
     align-self: flex-end;
+  }
+
+  .c_t_a {
+    top: 188rem;
+  }
+
+  .c_t_a-left {
+    padding: 0;
   }
 }
