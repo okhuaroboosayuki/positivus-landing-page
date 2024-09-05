@@ -41,3 +41,70 @@ window.addEventListener("scroll", function () {
     clientRow.style.transform = `translateX(-${translateValue}px)`;
   }
 });
+
+// case studies infinite scroll
+const caseStudiesBottom = document.querySelector(".case_studies_bottom");
+
+let scrollInterval;
+let isScrolling = false;
+const scrollSpeed = 2;
+
+const mediaQuery = window.matchMedia("(max-width: 1055px)");
+
+const startScroll = () => {
+  scrollInterval = setInterval(() => {
+    if (isScrolling) {
+      caseStudiesBottom.scrollLeft += scrollSpeed;
+
+      if (
+        caseStudiesBottom.scrollLeft >=
+        caseStudiesBottom.scrollWidth - caseStudiesBottom.clientWidth
+      ) {
+        caseStudiesBottom.style.scrollBehavior = "auto"; // Temporarily disable smooth scroll
+
+        caseStudiesBottom.scrollLeft = 0; // Reset to the start
+
+        // Re-enable smooth scroll after resetting
+        setTimeout(() => {
+          caseStudiesBottom.style.scrollBehavior = "smooth";
+        }, 50); // Delay to ensure smooth scroll is back after the reset
+      }
+    }
+  }, 16);
+};
+
+const stopScroll = () => {
+  clearInterval(scrollInterval);
+};
+
+const handleResize = () => {
+  // handle scrolling when screen width resizes
+  if (mediaQuery.matches) {
+    isScrolling = true;
+    startScroll();
+  } else {
+    isScrolling = false;
+    stopScroll();
+  }
+};
+
+window.addEventListener("resize", handleResize);
+
+handleResize(); // initial check
+
+// check for when user hovers over or touches the section
+caseStudiesBottom.addEventListener("mouseenter", function () {
+  isScrolling = false;
+});
+
+caseStudiesBottom.addEventListener("mouseleave", function () {
+  if (mediaQuery.matches) isScrolling = true;
+});
+
+caseStudiesBottom.addEventListener("touchstart", function () {
+  isScrolling = false;
+});
+
+caseStudiesBottom.addEventListener("touchend", function () {
+  if (mediaQuery.matches) isScrolling = true;
+});
