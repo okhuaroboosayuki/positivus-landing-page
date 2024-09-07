@@ -108,3 +108,29 @@ caseStudiesBottom.addEventListener("touchstart", function () {
 caseStudiesBottom.addEventListener("touchend", function () {
   if (mediaQuery.matches) isScrolling = true;
 });
+
+// work process accordion
+const wpAccordionTop = document.querySelectorAll(".box-top");
+
+wpAccordionTop.forEach((accordion) => {
+  accordion.addEventListener("click", function () {
+    const parentBox = accordion.parentElement;
+
+    const isActive = parentBox.classList.contains("active");
+
+    document
+      .querySelectorAll(".work_process_bottom_box.active")
+      .forEach((activeBox) => {
+        activeBox.classList.remove("active");
+        activeBox.querySelector(".box-top").classList.remove("active");
+        activeBox.querySelector(".box-bottom").classList.remove("active");
+      });
+
+    if (!isActive) {
+      parentBox.classList.toggle("active");
+      accordion.nextElementSibling.classList.toggle("active");
+      accordion.classList.toggle("active");
+    }
+    console.log(accordion.children[0].innerHTML);
+  });
+});
