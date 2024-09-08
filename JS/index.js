@@ -1,6 +1,6 @@
 "strict";
 
-// Hamburger Menu
+// #MOBILE MENU
 const menuIcon = document.querySelector("#hamburger_menu");
 const navListElement = document.querySelector("#list");
 
@@ -14,7 +14,7 @@ menuIcon.addEventListener("click", function () {
   }
 });
 
-// SCROLL REVEAL HANDLING
+// #SCROLL REVEAL HANDLING
 const clientRow = document.querySelector(".client_row");
 const hiddenEl = document.querySelectorAll(".hidden");
 
@@ -49,8 +49,6 @@ let scrollInterval;
 let isScrolling = false;
 const scrollSpeed = 2;
 
-const mediaQuery = window.matchMedia("(max-width: 1055px)");
-
 const startScroll = () => {
   scrollInterval = setInterval(() => {
     if (isScrolling) {
@@ -60,14 +58,14 @@ const startScroll = () => {
         caseStudiesBottom.scrollLeft >=
         caseStudiesBottom.scrollWidth - caseStudiesBottom.clientWidth
       ) {
-        caseStudiesBottom.style.scrollBehavior = "auto"; // Temporarily disable smooth scroll
+        isScrolling = false;
 
         caseStudiesBottom.scrollLeft = 0; // Reset to the start
 
         // Re-enable smooth scroll after resetting
         setTimeout(() => {
-          caseStudiesBottom.style.scrollBehavior = "smooth";
-        }, 50); // Delay to ensure smooth scroll is back after the reset
+          isScrolling = true;
+        }, 2000);
       }
     }
   }, 16);
@@ -79,6 +77,8 @@ const stopScroll = () => {
 
 const handleResize = () => {
   // handle scrolling when screen width resizes
+  const mediaQuery = window.matchMedia("(max-width: 1055px)");
+
   if (mediaQuery.matches) {
     isScrolling = true;
     startScroll();
@@ -93,11 +93,12 @@ window.addEventListener("resize", handleResize);
 handleResize(); // initial check
 
 // check for when user hovers over or touches the section
-caseStudiesBottom.addEventListener("mouseenter", function () {
+caseStudiesBottom.addEventListener("pointerenter", function () {
   isScrolling = false;
 });
 
-caseStudiesBottom.addEventListener("mouseleave", function () {
+caseStudiesBottom.addEventListener("pointerleave", function () {
+  const mediaQuery = window.matchMedia("(max-width: 1055px)");
   if (mediaQuery.matches) isScrolling = true;
 });
 
@@ -106,10 +107,11 @@ caseStudiesBottom.addEventListener("touchstart", function () {
 });
 
 caseStudiesBottom.addEventListener("touchend", function () {
+  const mediaQuery = window.matchMedia("(max-width: 1055px)");
   if (mediaQuery.matches) isScrolling = true;
 });
 
-// work process accordion
+// #WORK PROCESS ACCORDION
 const wpAccordionTop = document.querySelectorAll(".box-top");
 
 wpAccordionTop.forEach((accordion) => {
@@ -131,6 +133,5 @@ wpAccordionTop.forEach((accordion) => {
       accordion.nextElementSibling.classList.toggle("active");
       accordion.classList.toggle("active");
     }
-    console.log(accordion.children[0].innerHTML);
   });
 });

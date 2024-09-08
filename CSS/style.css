@@ -716,8 +716,8 @@ main {
     padding: 0;
     border-radius: 0;
     gap: 20px;
-    overflow: scroll;
-    scroll-behavior: smooth;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .case_studies_bottom::-webkit-scrollbar {
@@ -928,7 +928,7 @@ main {
   }
 
   .client_row_container {
-    top: 56rem;
+    top: 58rem;
   }
 
   .services {
