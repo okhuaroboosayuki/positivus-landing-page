@@ -544,6 +544,7 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 40px;
+  padding: 0 3rem;
 }
 
 .team_members_profile-container {
@@ -633,6 +634,24 @@ main {
   max-width: 317px;
 }
 
+.team_members_bottom button {
+  padding: 1rem 4rem;
+  margin-top: -0.5rem;
+  font-size: 16.2px;
+  align-self: flex-end;
+  background-color: var(--black);
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  transition: 0.3s ease-in;
+}
+
+.team_members_bottom button:hover {
+  background-color: #fff;
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
 /* keyframes animations */
 @keyframes slideInFromRight {
   from {
@@ -700,6 +719,10 @@ main {
   }
 
   .team_members_top {
+    padding: 0;
+  }
+
+  .team_members_bottom {
     padding: 0;
   }
 }
@@ -956,8 +979,25 @@ main {
     padding: 0 0 0 1.5rem;
   }
 
+  .case_studies_bottom {
+    flex-direction: column;
+    overflow-x: hidden;
+    padding: 0 0.5rem;
+  }
+
   .case_studies_bottom .case_studies_bottom-card {
-    transform: translate(100px);
+    transform: translate(0px);
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .case_studies_bottom-card p {
+    width: 100%;
+  }
+
+  .case_studies_bottom-card div {
+    align-self: flex-start;
   }
 
   .work_process {
@@ -972,6 +1012,10 @@ main {
   .work_process_bottom_box .box-bottom.active {
     padding: 2rem 0;
   }
+
+  .team_members_bottom button {
+    align-self: center;
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -985,10 +1029,6 @@ main {
 
   .c_t_a-right {
     display: none;
-  }
-
-  .case_studies_bottom .case_studies_bottom-card {
-    transform: translate(50px);
   }
 }
 
@@ -1041,10 +1081,6 @@ main {
 
   .c_t_a-left {
     padding: 0;
-  }
-
-  .case_studies_bottom .case_studies_bottom-card {
-    transform: translate(5px);
   }
 
   .work_process_top p {
@@ -1124,6 +1160,15 @@ main {
   .team_members {
     padding: 0 20px;
   }
+
+  .team_members_profile-container .profile_card {
+    max-width: 100%;
+    padding: 0.3rem;
+  }
+
+  .team_members_bottom button {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 375px) {
@@ -1150,6 +1195,28 @@ main {
 
   .work_process_bottom_box .box-bottom.active {
     padding: 1rem 0;
+  }
+
+  .team_members_profile-container .profile_card {
+    height: 300px;
+  }
+
+  .profile_card_top .profile_card_top_img .mask {
+    top: 0;
+    left: 5px;
+  }
+
+  .profile_card_top .profile_card_top_img .mask,
+  .profile_card_top .profile_card_top_img img {
+    width: 80px;
+  }
+
+  .profile_card_top span h4 {
+    font-size: 18px;
+  }
+
+  .profile_card_top span p {
+    font-size: 16px;
   }
 }
 
