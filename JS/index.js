@@ -9,8 +9,12 @@ menuIcon.addEventListener("click", function () {
 
   if (menuIcon.classList.contains("open")) {
     navListElement.classList.add("menu_open");
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
   } else {
     navListElement.classList.remove("menu_open");
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
   }
 });
 
@@ -40,75 +44,6 @@ window.addEventListener("scroll", function () {
   } else {
     clientRow.style.transform = `translateX(-${translateValue}px)`;
   }
-});
-
-// case studies infinite scroll
-const caseStudiesBottom = document.querySelector(".case_studies_bottom");
-
-let scrollInterval;
-let isScrolling = false;
-const scrollSpeed = 2;
-
-const startScroll = () => {
-  scrollInterval = setInterval(() => {
-    if (isScrolling) {
-      caseStudiesBottom.scrollLeft += scrollSpeed;
-
-      if (
-        caseStudiesBottom.scrollLeft >=
-        caseStudiesBottom.scrollWidth - caseStudiesBottom.clientWidth
-      ) {
-        isScrolling = false;
-
-        caseStudiesBottom.scrollLeft = 0; // Reset to the start
-
-        // Re-enable smooth scroll after resetting
-        setTimeout(() => {
-          isScrolling = true;
-        }, 2000);
-      }
-    }
-  }, 16);
-};
-
-const stopScroll = () => {
-  clearInterval(scrollInterval);
-};
-
-const handleResize = () => {
-  // handle scrolling when screen width resizes
-  const mediaQuery = window.matchMedia("(max-width: 1055px)");
-
-  if (mediaQuery.matches) {
-    isScrolling = true;
-    startScroll();
-  } else {
-    isScrolling = false;
-    stopScroll();
-  }
-};
-
-window.addEventListener("resize", handleResize);
-
-handleResize(); // initial check
-
-// check for when user hovers over or touches the section
-caseStudiesBottom.addEventListener("pointerenter", function () {
-  isScrolling = false;
-});
-
-caseStudiesBottom.addEventListener("pointerleave", function () {
-  const mediaQuery = window.matchMedia("(max-width: 1055px)");
-  if (mediaQuery.matches) isScrolling = true;
-});
-
-caseStudiesBottom.addEventListener("touchstart", function () {
-  isScrolling = false;
-});
-
-caseStudiesBottom.addEventListener("touchend", function () {
-  const mediaQuery = window.matchMedia("(max-width: 1055px)");
-  if (mediaQuery.matches) isScrolling = true;
 });
 
 // #WORK PROCESS ACCORDION
