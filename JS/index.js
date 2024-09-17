@@ -4,17 +4,48 @@
 const menuIcon = document.querySelector("#hamburger_menu");
 const navListElement = document.querySelector("#list");
 
-menuIcon.addEventListener("click", function () {
+function setDocOverFlow() {
+  if (document.documentElement.style.overflow === "hidden") {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  } else {
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  }
+}
+
+menuIcon.addEventListener("click", function (e) {
+  e.stopPropagation();
   this.classList.toggle("open");
 
   if (menuIcon.classList.contains("open")) {
     navListElement.classList.add("menu_open");
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
+    setDocOverFlow();
   } else {
     navListElement.classList.remove("menu_open");
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
+    setDocOverFlow();
+  }
+});
+
+window.addEventListener("resize", function () {
+  if (menuIcon.classList.contains("open")) {
+    navListElement.classList.remove("menu_open");
+    menuIcon.classList.toggle("open");
+    setDocOverFlow();
+  }
+});
+
+document.addEventListener("click", function (e) {
+  const screenWidth = window.innerWidth; // Corrected property
+
+  if (screenWidth >= 500 && screenWidth <= 1055) {
+    if (menuIcon.classList.contains("open")) {
+      if (!navListElement.contains(e.target)) {
+        navListElement.classList.remove("menu_open");
+        menuIcon.classList.toggle("open");
+        setDocOverFlow();
+      }
+    }
   }
 });
 
