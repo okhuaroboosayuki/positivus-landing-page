@@ -980,7 +980,8 @@ main {
   .services_top,
   .case_studies .case_studies_top,
   .work_process_top,
-  .team_members_top {
+  .team_members_top,
+  .testimonials_top {
     flex-direction: column;
   }
 
@@ -1102,7 +1103,8 @@ main {
 
   .services_top p,
   .case_studies .case_studies_top p,
-  .team_members_top p {
+  .team_members_top p,
+  .testimonials_top p {
     max-width: 100%;
     text-align: center;
   }
@@ -1158,6 +1160,14 @@ main {
   .work_process_bottom_box .box-bottom.active {
     padding: 2rem 0;
   }
+
+  .swiper-button-next {
+    right: 10rem !important;
+  }
+
+  .swiper-button-prev {
+    left: 10rem !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1181,6 +1191,26 @@ main {
 
   .profile_card .profile_card_top {
     justify-content: space-around;
+  }
+
+  .swiper_card .text {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .swiper-button-next {
+    right: 5rem !important;
+  }
+
+  .swiper-button-prev {
+    left: 5rem !important;
+  }
+}
+
+@media screen and (max-width: 595px) {
+  .swiper_card {
+    width: 100% !important;
+    padding: 0.5rem;
   }
 }
 
@@ -1269,6 +1299,27 @@ main {
   .team_members_bottom {
     gap: 0;
   }
+
+  .testimonials_bottom {
+    padding: 1rem 0 0 0;
+    height: 480px;
+  }
+
+  .author h4 {
+    font-size: 18px;
+  }
+
+  .author p {
+    font-size: 16px;
+  }
+
+  .swiper-button-next {
+    right: 1rem !important;
+  }
+
+  .swiper-button-prev {
+    left: 1rem !important;
+  }
 }
 
 @media screen and (max-width: 428px) {
@@ -1348,6 +1399,15 @@ main {
   .team_members_bottom button {
     width: 100%;
   }
+
+  .swiper-pagination {
+    top: 26rem !important;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 26.5rem !important;
+  }
 }
 
 @media screen and (max-width: 375px) {
@@ -1388,6 +1448,18 @@ main {
   .profile_card_top .profile_card_top_img img {
     width: 80px;
   }
+
+  .swiper_card {
+    padding: 1rem;
+  }
+
+  .swiper_card .text {
+    padding: 1rem;
+  }
+
+  .swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0 10px !important;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -1415,5 +1487,51 @@ main {
 
   .work_process_bottom_box .box-bottom {
     margin-top: -10.5rem;
+  }
+
+  .work_process,
+  .team_members {
+    padding: 0 10px;
+  }
+
+  .team_members_profile-container .profile_card {
+    height: 320px;
+  }
+
+  .profile_card .profile_card_top {
+    gap: 5px;
+  }
+
+  .profile_card_top .profile_card_top_img .mask,
+  .profile_card_top .profile_card_top_img img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .profile_card_top span h4 {
+    font-size: 16.5px;
+    width: 120px;
+  }
+
+  .profile_card_top span p,
+  .author p {
+    font-size: 14px;
+  }
+
+  .testimonials_bottom {
+    height: 525px;
+  }
+
+  .swiper-pagination {
+    top: 29rem !important;
+  }
+
+  .swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0 7px !important;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 29.5rem !important;
   }
 }
