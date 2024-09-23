@@ -1,4 +1,5 @@
 "strict";
+import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs";
 
 // #MOBILE MENU
 const menuIcon = document.querySelector("#hamburger_menu");
@@ -101,3 +102,46 @@ wpAccordionTop.forEach((accordion) => {
     }
   });
 });
+
+// SWIPER CAROUSEL
+const swiper = new Swiper(".swiper", {
+  slidesPerView: "auto",
+  spaceBetween: 50,
+  centeredSlides: true,
+  initialSlide: 1,
+  spaceBetween: 50,
+
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+
+swiper.on("transitionEnd", function () {
+  onAuthorVisibility();
+});
+
+function onAuthorVisibility() {
+  const allSlides = document.querySelectorAll(".swiper-slide");
+
+  allSlides.forEach((slide, index) => {
+    const author = slide.querySelector(".author");
+
+    if (author) {
+      const activeIndex = swiper.activeIndex;
+
+      if (index === activeIndex) {
+        author.classList.remove("hidden");
+      } else {
+        author.classList.add("hidden");
+      }
+    }
+  });
+}
+
+onAuthorVisibility();
