@@ -4,6 +4,9 @@
 const menuIcon = document.querySelector("#hamburger_menu");
 const navListElement = document.querySelector("#list");
 
+const screenWidth = window.innerWidth;
+
+// to set overflow property of document
 function setDocOverFlow(isOpen) {
   if (isOpen) {
     document.documentElement.style.overflow = "hidden";
@@ -14,6 +17,7 @@ function setDocOverFlow(isOpen) {
   }
 }
 
+// menu toggle
 menuIcon.addEventListener("click", function (e) {
   e.stopPropagation();
   this.classList.toggle("open");
@@ -27,6 +31,7 @@ menuIcon.addEventListener("click", function (e) {
   }
 });
 
+// check for change in screen width, then close menu if open
 window.addEventListener("resize", function () {
   if (menuIcon.classList.contains("open")) {
     navListElement.classList.remove("menu_open");
@@ -35,9 +40,8 @@ window.addEventListener("resize", function () {
   }
 });
 
+// check for clicks oustide the navigation area to close menu
 document.addEventListener("click", function (e) {
-  const screenWidth = window.innerWidth;
-
   if (screenWidth >= 500 && screenWidth <= 1055) {
     if (menuIcon.classList.contains("open")) {
       if (!navListElement.contains(e.target) && e.target !== menuIcon) {
@@ -49,6 +53,7 @@ document.addEventListener("click", function (e) {
   }
 });
 
+// when mobile menu link is clicked, close menu
 const navLinks = document.querySelectorAll(".list_item");
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
@@ -60,18 +65,34 @@ navLinks.forEach((link) => {
   });
 });
 
-// REQUEST QUOTE BUTTON CLICK
-const requestQuote = document.querySelector(".list_btn");
+// REQUEST/BOOK BUTTON CLICK
+const bookConsultBtn = document.querySelector(".hero_button");
+const getProposalBtn = document.querySelector(".c_t_a-btn");
+const requestQuoteBtn = document.querySelector(".list_btn");
 const contactUs = document.querySelector("#contact-us");
 
-requestQuote.addEventListener("click", function () {
+function showContactUs() {
+  contactUs.scrollIntoView({ behavior: "smooth" });
+}
+
+// when request button is clicked, close menu
+requestQuoteBtn.addEventListener("click", function () {
   if (menuIcon.classList.contains("open")) {
     navListElement.classList.remove("menu_open");
     menuIcon.classList.remove("open");
     setDocOverFlow(false);
   }
 
-  contactUs.scrollIntoView({ behavior: "smooth" });
+  showContactUs();
+});
+
+// two event listeners scrolls below to contact us section when clicked
+bookConsultBtn.addEventListener("click", function () {
+  showContactUs();
+});
+
+getProposalBtn.addEventListener("click", function () {
+  showContactUs();
 });
 
 // #SCROLL REVEAL HANDLING
@@ -168,7 +189,7 @@ function onAuthorVisibility() {
   });
 }
 
-onAuthorVisibility();
+onAuthorVisibility(); //initialize when document loads
 
 // CONTACT US FORM FUNCTIONALITY
 const formWrapper = document.querySelector(".form_wrapper");
