@@ -13,7 +13,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <script async src="/JS/index.js" type="module"></script>
+    <script async src="/JS/index.js"></script>
     <title>Positivus - A Cutting-Edge Digital Marketing Agency</title>
   </head>
   <body>
@@ -31,19 +31,19 @@
       <nav class="nav_list_container">
         <ul id="list">
           <li class="list_item">
-            <a href="#">about us</a>
+            <a href="#work-process">about us</a>
           </li>
           <li class="list_item">
-            <a href="#">services</a>
+            <a href="#services">services</a>
           </li>
           <li class="list_item">
-            <a href="#">use cases</a>
+            <a href="#case-studies">use cases</a>
           </li>
           <li class="list_item">
-            <a href="#">pricing</a>
+            <a href="#contact-us">pricing</a>
           </li>
           <li class="list_item">
-            <a href="#">blog</a>
+            <a href="#testimonials">blog</a>
           </li>
           <li class="list_btn">Request a quote</li>
         </ul>
@@ -85,7 +85,7 @@
         </div>
       </section>
 
-      <section class="services">
+      <section class="services" id="services">
         <section class="services_top hidden">
           <h3>Services</h3>
 
@@ -267,7 +267,7 @@
         </div>
       </section>
 
-      <section class="case_studies">
+      <section class="case_studies" id="case-studies">
         <div class="case_studies_top hidden">
           <h3>case studies</h3>
           <p>
@@ -327,7 +327,7 @@
         </div>
       </section>
 
-      <section class="work_process">
+      <section class="work_process" id="work-process">
         <div class="work_process_top hidden">
           <h3>Our Working Process</h3>
           <p>Step-by-Step Guide to Achieving Your Business Goals</p>
@@ -653,7 +653,7 @@
         </div>
       </section>
 
-      <section class="testimonials">
+      <section class="testimonials" id="testimonials">
         <div class="testimonials_top">
           <h3>Testimonials</h3>
           <p>
@@ -747,6 +747,79 @@
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
           </div>
+        </div>
+      </section>
+
+      <section class="contact_us" id="contact-us">
+        <div class="contact_us_top">
+          <h3>Contact Us</h3>
+          <p>Connect with Us: Let's Discuss Your Digital Marketing Needs</p>
+        </div>
+      </section>
+
+      <section class="contact_us_bottom">
+        <div class="form_wrapper">
+          <form class="contact_us_form" id="contact">
+            <div class="checklist">
+              <label for="sayHi">
+                <input type="radio" name="options" id="sayHi" value="Say Hi" />
+                <span class="custom_radio"></span>
+                Say Hi
+              </label>
+
+              <label for="getQuote">
+                <input
+                  type="radio"
+                  name="options"
+                  id="getQuote"
+                  value="Get a Quote"
+                  checked
+                  aria-checked="true"
+                />
+                <span class="custom_radio"></span>
+                Get a Quote
+              </label>
+            </div>
+
+            <div class="form_inputs">
+              <div class="input_wrapper">
+                <label for="name">Name*</label>
+                <input type="text" name="name" id="name" placeholder="Name" />
+                <p class="error_message" id="nameError"></p>
+              </div>
+
+              <div class="input_wrapper">
+                <label for="email">Email*</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                />
+                <p class="error_message" id="emailError"></p>
+              </div>
+
+              <div class="input_wrapper">
+                <label for="message">Message*</label>
+                <textarea
+                  name="message"
+                  id="message"
+                  placeholder="Message"
+                  maxlength="500"
+                ></textarea>
+                <p class="error_message" id="msgError"></p>
+              </div>
+
+              <button>Send Message</button>
+            </div>
+          </form>
+        </div>
+
+        <div>
+          <img
+            src="/IMAGES/Illustration_2.svg"
+            alt="contact form illustration"
+          />
         </div>
       </section>
     </main>
