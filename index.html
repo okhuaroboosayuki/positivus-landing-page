@@ -66,7 +66,7 @@
             marketing, and content creation.
           </p>
 
-          <button class="hidden">Book a consultation</button>
+          <button class="hidden hero_button">Book a consultation</button>
         </section>
 
         <section class="hero_right hidden">
@@ -256,7 +256,7 @@
             Contact us today to learn more about how our digital marketing
             services can help your business grow and succeed online.
           </p>
-          <button>Get your free proposal</button>
+          <button class="c_t_a-btn">Get your free proposal</button>
         </div>
 
         <div class="c_t_a-right">
@@ -755,72 +755,77 @@
           <h3>Contact Us</h3>
           <p>Connect with Us: Let's Discuss Your Digital Marketing Needs</p>
         </div>
-      </section>
 
-      <section class="contact_us_bottom">
-        <div class="form_wrapper">
-          <form class="contact_us_form" id="contact">
-            <div class="checklist">
-              <label for="sayHi">
-                <input type="radio" name="options" id="sayHi" value="Say Hi" />
-                <span class="custom_radio"></span>
-                Say Hi
-              </label>
+        <section class="contact_us_bottom">
+          <div class="form_wrapper">
+            <form class="contact_us_form" id="contact">
+              <div class="checklist">
+                <label for="sayHi">
+                  <input
+                    type="radio"
+                    name="options"
+                    id="sayHi"
+                    value="Say Hi"
+                  />
+                  <span class="custom_radio"></span>
+                  Say Hi
+                </label>
 
-              <label for="getQuote">
-                <input
-                  type="radio"
-                  name="options"
-                  id="getQuote"
-                  value="Get a Quote"
-                  checked
-                  aria-checked="true"
-                />
-                <span class="custom_radio"></span>
-                Get a Quote
-              </label>
-            </div>
-
-            <div class="form_inputs">
-              <div class="input_wrapper">
-                <label for="name">Name*</label>
-                <input type="text" name="name" id="name" placeholder="Name" />
-                <p class="error_message" id="nameError"></p>
+                <label for="getQuote">
+                  <input
+                    type="radio"
+                    name="options"
+                    id="getQuote"
+                    value="Get a Quote"
+                    checked
+                    aria-checked="true"
+                  />
+                  <span class="custom_radio"></span>
+                  Get a Quote
+                </label>
               </div>
 
-              <div class="input_wrapper">
-                <label for="email">Email*</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                />
-                <p class="error_message" id="emailError"></p>
+              <div class="form_inputs">
+                <div class="input_wrapper">
+                  <label for="name">Name*</label>
+                  <input type="text" name="name" id="name" placeholder="Name" />
+                  <p class="error_message" id="nameError"></p>
+                </div>
+
+                <div class="input_wrapper">
+                  <label for="email">Email*</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                  />
+                  <p class="error_message" id="emailError"></p>
+                </div>
+
+                <div class="input_wrapper">
+                  <label for="message">Message*</label>
+                  <textarea
+                    name="message"
+                    id="message"
+                    placeholder="Message"
+                    maxlength="500"
+                  ></textarea>
+                  <p class="error_message" id="msgError"></p>
+                </div>
+
+                <button type="submit">Send Message</button>
               </div>
+            </form>
+          </div>
 
-              <div class="input_wrapper">
-                <label for="message">Message*</label>
-                <textarea
-                  name="message"
-                  id="message"
-                  placeholder="Message"
-                  maxlength="500"
-                ></textarea>
-                <p class="error_message" id="msgError"></p>
-              </div>
-
-              <button type="submit">Send Message</button>
-            </div>
-          </form>
-        </div>
-
-        <div>
-          <img
-            src="/IMAGES/Illustration_2.svg"
-            alt="contact form illustration"
-          />
-        </div>
+          <div class="image_wrapper">
+            <img
+              src="/IMAGES/Illustration_2.svg"
+              alt="contact form illustration"
+            />
+          </div>
+        </section>
       </section>
     </main>
 
