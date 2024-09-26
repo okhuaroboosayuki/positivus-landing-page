@@ -778,13 +778,14 @@ main {
   overflow: hidden;
 }
 
-.contact_us_bottom div:nth-child(2) {
+.contact_us_bottom .image_wrapper {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  width: 100%;
 }
 
-.contact_us_bottom div:nth-child(2) img {
+.contact_us_bottom .image_wrapper img {
   position: relative;
   top: 0;
   left: 20rem;
@@ -1083,6 +1084,14 @@ textarea {
   .team_members_top {
     justify-content: center;
   }
+
+  .contact_us_form {
+    width: 28rem;
+  }
+
+  .contact_us_bottom .image_wrapper img {
+    left: 13rem;
+  }
 }
 
 @media screen and (max-width: 1055px) {
@@ -1172,7 +1181,8 @@ textarea {
   .case_studies .case_studies_top,
   .work_process_top,
   .team_members_top,
-  .testimonials_top {
+  .testimonials_top,
+  .contact_us_top {
     flex-direction: column;
   }
 
@@ -1216,12 +1226,24 @@ textarea {
   .work_process_top {
     justify-content: center;
   }
+
+  .contact_us_form {
+    width: 23rem;
+  }
+
+  .contact_us_bottom .image_wrapper img {
+    left: 5rem;
+  }
 }
 
 @media screen and (max-width: 934px) {
   .team_members_profile-container .profile_card {
     width: 367px;
     padding: 0.8rem;
+  }
+
+  .contact_us_form {
+    width: 19rem;
   }
 }
 
@@ -1358,6 +1380,18 @@ textarea {
 
   .swiper-button-prev {
     left: 10rem !important;
+  }
+
+  .contact_us_bottom {
+    padding: 2.5rem;
+  }
+
+  .contact_us_form {
+    width: 100%;
+  }
+
+  .contact_us_bottom .image_wrapper {
+    display: none;
   }
 }
 
@@ -1650,6 +1684,14 @@ textarea {
 
   .swiper-pagination-bullets .swiper-pagination-bullet {
     margin: 0 10px !important;
+  }
+
+  .contact_us_bottom {
+    padding: 1.5rem;
+  }
+
+  .contact_us_form .checklist {
+    gap: 20px;
   }
 }
 
