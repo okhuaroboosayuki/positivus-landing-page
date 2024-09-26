@@ -1,17 +1,16 @@
 "strict";
-import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs";
 
 // #MOBILE MENU
 const menuIcon = document.querySelector("#hamburger_menu");
 const navListElement = document.querySelector("#list");
 
-function setDocOverFlow() {
-  if (document.documentElement.style.overflow === "hidden") {
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
-  } else {
+function setDocOverFlow(isOpen) {
+  if (isOpen) {
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+  } else {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
   }
 }
 
@@ -21,33 +20,58 @@ menuIcon.addEventListener("click", function (e) {
 
   if (menuIcon.classList.contains("open")) {
     navListElement.classList.add("menu_open");
-    setDocOverFlow();
+    setDocOverFlow(true);
   } else {
     navListElement.classList.remove("menu_open");
-    setDocOverFlow();
+    setDocOverFlow(false);
   }
 });
 
 window.addEventListener("resize", function () {
   if (menuIcon.classList.contains("open")) {
     navListElement.classList.remove("menu_open");
-    menuIcon.classList.toggle("open");
-    setDocOverFlow();
+    menuIcon.classList.remove("open");
+    setDocOverFlow(false);
   }
 });
 
 document.addEventListener("click", function (e) {
-  const screenWidth = window.innerWidth; // Corrected property
+  const screenWidth = window.innerWidth;
 
   if (screenWidth >= 500 && screenWidth <= 1055) {
     if (menuIcon.classList.contains("open")) {
-      if (!navListElement.contains(e.target)) {
+      if (!navListElement.contains(e.target) && e.target !== menuIcon) {
         navListElement.classList.remove("menu_open");
-        menuIcon.classList.toggle("open");
-        setDocOverFlow();
+        menuIcon.classList.remove("open");
+        setDocOverFlow(false);
       }
     }
   }
+});
+
+const navLinks = document.querySelectorAll(".list_item");
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    if (menuIcon.classList.contains("open")) {
+      navListElement.classList.remove("menu_open");
+      menuIcon.classList.remove("open");
+      setDocOverFlow(false);
+    }
+  });
+});
+
+// REQUEST QUOTE BUTTON CLICK
+const requestQuote = document.querySelector(".list_btn");
+const contactUs = document.querySelector("#contact-us");
+
+requestQuote.addEventListener("click", function () {
+  if (menuIcon.classList.contains("open")) {
+    navListElement.classList.remove("menu_open");
+    menuIcon.classList.remove("open");
+    setDocOverFlow(false);
+  }
+
+  contactUs.scrollIntoView({ behavior: "smooth" });
 });
 
 // #SCROLL REVEAL HANDLING
@@ -145,3 +169,62 @@ function onAuthorVisibility() {
 }
 
 onAuthorVisibility();
+
+// CONTACT US FORM FUNCTIONALITY
+const formWrapper = document.querySelector(".form_wrapper");
+const contactForm = document.querySelector("#contact");
+
+const nameError = document.getElementById("nameError");
+const emailError = document.getElementById("emailError");
+const msgError = document.getElementById("msgError");
+
+contactForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  let isValid = true;
+
+  nameError.innerText = "";
+  emailError.innerText = "";
+  msgError.innerText = "";
+
+  if (name === "") {
+    nameError.innerText = "Name is required";
+    isValid = false;
+  }
+
+  if (email === "" || !validateEmail(email)) {
+    emailError.innerText = "Valid email is required";
+    isValid = false;
+  }
+
+  if (message === "") {
+    msgError.innerText = "Message is required";
+    isValid = false;
+  }
+
+  if (!isValid) return;
+
+  showLoading(formWrapper);
+
+  setTimeout(() => {
+    formWrapper.innerHTML = `<p class="confirmation_message">Hi ${name}! Your message has been sent successfully!</p>`;
+  }, 2000);
+});
+
+function validateEmail(email) {
+  const emailPattern = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+  return emailPattern.test(email);
+}
+
+function showLoading(container) {
+  const loading = document.createElement("div");
+  loading.id = "loading";
+  loading.innerHTML = `<div class="spinner"></div>`;
+
+  container.innerHTML = "";
+  container.appendChild(loading);
+}
