@@ -6,7 +6,11 @@ const navListElement = document.querySelector("#list");
 
 const screenWidth = window.innerWidth;
 
-// to set overflow property of document
+/**
+ * Sets the overflow property of the document based on the provided boolean value.
+ *
+ * @param {boolean} isOpen - If true, disables scrolling by setting overflow to hidden. If false, restores scrolling by resetting overflow properties.
+ */
 function setDocOverFlow(isOpen) {
   if (isOpen) {
     document.documentElement.style.overflow = "hidden";
@@ -71,6 +75,9 @@ const getProposalBtn = document.querySelector(".c_t_a-btn");
 const requestQuoteBtn = document.querySelector(".list_btn");
 const contactUs = document.querySelector("#contact-us");
 
+/**
+ * Scrolls to contact us section of the page when called
+ */
 function showContactUs() {
   contactUs.scrollIntoView({ behavior: "smooth" });
 }
@@ -132,13 +139,11 @@ wpAccordionTop.forEach((accordion) => {
 
     const isActive = parentBox.classList.contains("active");
 
-    document
-      .querySelectorAll(".work_process_bottom_box.active")
-      .forEach((activeBox) => {
-        activeBox.classList.remove("active");
-        activeBox.querySelector(".box-top").classList.remove("active");
-        activeBox.querySelector(".box-bottom").classList.remove("active");
-      });
+    document.querySelectorAll(".work_process_bottom_box.active").forEach((activeBox) => {
+      activeBox.classList.remove("active");
+      activeBox.querySelector(".box-top").classList.remove("active");
+      activeBox.querySelector(".box-bottom").classList.remove("active");
+    });
 
     if (!isActive) {
       parentBox.classList.toggle("active");
@@ -171,6 +176,9 @@ swiper.on("transitionEnd", function () {
   onAuthorVisibility();
 });
 
+/**
+ * Controls the visibility of author elements in the Swiper slides.
+ */
 function onAuthorVisibility() {
   const allSlides = document.querySelectorAll(".swiper-slide");
 
@@ -208,44 +216,110 @@ contactForm.addEventListener("submit", function (e) {
 
   let isValid = true;
 
-  nameError.innerText = "";
-  emailError.innerText = "";
-  msgError.innerText = "";
+  const isNameValid = showError(name, nameError, "Name cannot be blank");
+  const isEmailValid = showError(email, emailError, "Valid email is required", validateEmail);
+  const isMessageValid = showError(message, msgError, "Message is required");
 
-  if (name === "") {
-    nameError.innerText = "Name is required";
-    isValid = false;
-  }
-
-  if (email === "" || !validateEmail(email)) {
-    emailError.innerText = "Valid email is required";
-    isValid = false;
-  }
-
-  if (message === "") {
-    msgError.innerText = "Message is required";
-    isValid = false;
-  }
+  isValid = isNameValid && isEmailValid && isMessageValid;
 
   if (!isValid) return;
 
-  showLoading(formWrapper);
+  showLoading(formWrapper, "#000");
 
   setTimeout(() => {
     formWrapper.innerHTML = `<p class="confirmation_message">Hi ${name}! Your message has been sent successfully!</p>`;
   }, 2000);
 });
 
+/**
+ * showError validates a value and displays an error message if validation fails.
+ *
+ * @param {string} value - The input value to validate.
+ * @param {HTMLElement} errorEl - The HTML element where the error message should be displayed.
+ * @param {string} errorMessage - The message to display if validation fails.
+ * @param {function} [validateEmailFn=null] - Optional function to validate the email (or other) value. If provided, it should return true if the value is valid, otherwise false.
+ * @param {function} [onErrorCallback=null] - Optional callback function that gets executed when an error occurs.
+ *
+ * @returns {boolean} - Returns true if the value is valid, otherwise false.
+ */
+function showError(value, errorEl, errorMessage, validateEmailFn = null, onErrorCallback = null) {
+  errorEl.innerText = "";
+
+  if (validateEmailFn) {
+    if (!validateEmailFn(value)) {
+      errorEl.innerText = errorMessage;
+      if (onErrorCallback) onErrorCallback();
+      return false;
+    }
+  } else {
+    if (value === "") {
+      errorEl.innerText = errorMessage;
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/**
+ * validateEmail checks if the provided email address is in a valid format.
+ *
+ * @param {string} email - The email address to be validated.
+ * @returns {boolean} - Returns true if the email address is valid, otherwise false.
+ */
 function validateEmail(email) {
   const emailPattern = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
   return emailPattern.test(email);
 }
 
-function showLoading(container) {
+/**
+ * showLoading displays a simple spinner loader when data is being fetched or submitted
+ * It clears the existing content of the container and replaces it with a loading spinner.
+ * @param {HTMLElement} container - The container element where the loading spinner should be displayed.
+ * @param {string} color - The color of the loading spinner, provided as a CSS-compatible color value.
+ */
+function showLoading(container, color) {
   const loading = document.createElement("div");
   loading.id = "loading";
-  loading.innerHTML = `<div class="spinner"></div>`;
+  loading.innerHTML = `<div class="spinner" style="border-left-color:${color}; border-left-width: 4px; border-left-style: solid;"></div>`;
 
   container.innerHTML = "";
   container.appendChild(loading);
 }
+
+// FOOTER NEWSLETTER
+const newsletterForm = document.getElementById("newsletter");
+const userEmailWrapper = document.getElementById("newsletter_email_input_wrapper");
+const newsletterFormWrapper = document.getElementById("newsletter_form_wrapper");
+
+const newsletterError = document.getElementById("newsletter_error");
+
+newsletterForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const email = document.getElementById("newsletter_email").value.trim();
+
+  let isValid = true;
+
+  const onErrorCallback = function () {
+    userEmailWrapper.style.marginTop = "1.2rem";
+  };
+
+  const isEmailValid = showError(email, newsletterError, "Valid email is required", validateEmail, onErrorCallback);
+
+  isValid = isEmailValid;
+
+  if (!isValid) return;
+
+  newsletterForm.innerHTML = "";
+
+  showLoading(newsletterForm, "#fff");
+
+  setTimeout(() => {
+    newsletterForm.innerHTML = `<p class="confirmation_message" style="color: #fff;">You have successfully subscribed!</p>`;
+  }, 2000);
+});
+
+// footer year
+const footerYear = document.getElementById("year");
+footerYear.innerText = new Date().getFullYear();
