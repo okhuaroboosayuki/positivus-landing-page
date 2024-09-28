@@ -34,8 +34,6 @@ const newsletterError = document.getElementById("newsletter_error");
 
 const footerYear = document.getElementById("year");
 
-/////////////////////
-
 /* EVENT LISTENERS */
 
 // Mobile Menu Toggle
@@ -125,8 +123,13 @@ contactForm.addEventListener("submit", function (e) {
   showLoading(formWrapper, "#000");
 
   // after 2secs, displays confirmation message
+  const capitalizedNames = name
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+
   setTimeout(() => {
-    formWrapper.innerHTML = `<p class="confirmation_message">Hi ${name}! Your message has been sent successfully!</p>`;
+    formWrapper.innerHTML = `<p class="confirmation_message">Hi <span style="color: #000; border: 5px solid #b9ff66; padding: 5px 1rem">${capitalizedNames}</span> <br><br> Your message has been sent successfully!</p>`;
   }, 2000);
 });
 
@@ -155,7 +158,7 @@ newsletterForm.addEventListener("submit", function (e) {
 
   // after 2secs, displays confirmation message
   setTimeout(() => {
-    newsletterForm.innerHTML = `<p class="confirmation_message" style="color: #fff;">You have successfully subscribed!</p>`;
+    newsletterForm.innerHTML = `<p class="confirmation_message" style="color: #fff; text-align: center;">You have successfully subscribed!</p>`;
   }, 2000);
 });
 
@@ -266,6 +269,28 @@ function setDocOverFlow(isOpen) {
 function showContactUs() {
   contactUs.scrollIntoView({ behavior: "smooth" });
 }
+
+/**
+ * Controls the visibility of author details in the Swiper slides.
+ */
+function onAuthorVisibility() {
+  const allSlides = document.querySelectorAll(".swiper-slide");
+
+  allSlides.forEach((slide, index) => {
+    const author = slide.querySelector(".author");
+
+    if (author) {
+      const activeIndex = swiper.activeIndex;
+
+      if (index === activeIndex) {
+        author.classList.remove("hidden");
+      } else {
+        author.classList.add("hidden");
+      }
+    }
+  });
+}
+onAuthorVisibility(); //initialize when document loads
 
 /**
  * showLoading displays a simple spinner loader when data is being fetched or submitted.
