@@ -919,6 +919,7 @@ textarea {
   height: 190px;
   font-style: normal;
   resize: none;
+  font-size: 16px;
 }
 
 .form_inputs button {
@@ -933,10 +934,9 @@ textarea {
   background-color: #fff;
 }
 
-.form_inputs .error_message {
+.error_message {
   font-size: 15px;
   color: #ff0000;
-  transition: 0.3s ease-in;
 }
 
 #loading {
@@ -949,7 +949,6 @@ textarea {
 
 #loading .spinner {
   border: 4px solid rgba(21, 255, 0, 0.1);
-  border-left-color: #000;
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -1077,7 +1076,18 @@ footer .footer_middle {
   gap: 20px;
 }
 
-#newsletter input {
+.newsletter_email_input_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.newsletter_email_input_wrapper .error_message {
+  margin-left: 7px;
+}
+
+#newsletter input,
+.newsletter_email_input_wrapper input {
   width: 100%;
   height: 67px;
   border-radius: 14px;
@@ -1724,13 +1734,17 @@ footer .footer_bottom {
     flex-direction: column;
   }
 
+  #newsletter input[type="submit"] {
+    padding: 1rem 2rem;
+  }
+
   .footer_bottom .copyright {
     gap: 15px;
     align-items: center;
   }
 
-  #newsletter input[type="submit"] {
-    padding: 1rem 2rem;
+  .newsletter_email_input_wrapper {
+    margin-top: 0;
   }
 }
 
