@@ -13,6 +13,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script async src="/JS/index.js"></script>
     <title>Positivus - A Cutting-Edge Digital Marketing Agency</title>
   </head>
@@ -902,10 +903,23 @@
         </div>
 
         <div class="newsletter_sub">
-          <form id="newsletter">
-            <input type="email" placeholder="Email" />
-            <input type="submit" value="Subscribe to news" />
-          </form>
+          <div class="newsletter_form_wrapper" id="newsletter_form_wrapper">
+            <form id="newsletter">
+              <div
+                class="newsletter_email_input_wrapper"
+                id="newsletter_email_input_wrapper"
+              >
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  id="newsletter_email"
+                />
+                <p class="error_message" id="newsletter_error"></p>
+              </div>
+              <input type="submit" value="Subscribe to news" />
+            </form>
+          </div>
         </div>
       </div>
 
@@ -916,7 +930,5 @@
         </div>
       </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 </html>
