@@ -34,107 +34,7 @@ const newsletterError = document.getElementById("newsletter_error");
 
 const footerYear = document.getElementById("year");
 
-/* FUNCTIONS */
-
-/**
- * Sets the overflow property of the document based on the provided boolean value.
- *
- * @param {boolean} isOpen - If true, disables scrolling by setting overflow to hidden. If false, restores scrolling by resetting overflow properties.
- */
-function setDocOverFlow(isOpen) {
-  if (isOpen) {
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
-  } else {
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
-  }
-}
-
-/**
- * Scrolls to contact us section of the page when called
- */
-function showContactUs() {
-  contactUs.scrollIntoView({ behavior: "smooth" });
-}
-
-/**
- * Controls the visibility of author details in the Swiper slides.
- */
-function onAuthorVisibility() {
-  const allSlides = document.querySelectorAll(".swiper-slide");
-
-  allSlides.forEach((slide, index) => {
-    const author = slide.querySelector(".author");
-
-    if (author) {
-      const activeIndex = swiper.activeIndex;
-
-      if (index === activeIndex) {
-        author.classList.remove("hidden");
-      } else {
-        author.classList.add("hidden");
-      }
-    }
-  });
-}
-onAuthorVisibility(); //initialize when document loads
-
-/**
- * showLoading displays a simple spinner loader when data is being fetched or submitted.
- * It clears the existing content of the container and replaces it with a loading spinner.
- * @param {HTMLElement} container - The container element where the loading spinner should be displayed.
- * @param {string} color - The color of the loading spinner, provided as a CSS-compatible color value.
- */
-function showLoading(container, color) {
-  const loading = document.createElement("div");
-  loading.id = "loading";
-  loading.innerHTML = `<div class="spinner" style="border-left-color:${color}; border-left-width: 4px; border-left-style: solid;"></div>`;
-
-  container.innerHTML = "";
-  container.appendChild(loading);
-}
-
-/**
- * validateEmail checks if the provided email address is in a valid format.
- *
- * @param {string} email - The email address to be validated.
- * @returns {boolean} - Returns true if the email address is valid, otherwise false.
- */
-function validateEmail(email) {
-  const emailPattern = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
-  return emailPattern.test(email);
-}
-
-/**
- * showError validates a value and displays an error message if validation fails.
- *
- * @param {string} value - The input value to validate.
- * @param {HTMLElement} errorEl - The HTML element where the error message should be displayed.
- * @param {string} errorMessage - The message to display if validation fails.
- * @param {function} [validateEmailFn=null] - Optional function to validate the email (or other) value. If provided, it should return true if the value is valid, otherwise false.
- * @param {function} [onErrorCallback=null] - Optional callback function that gets executed when an error occurs.
- *
- * @returns {boolean} - Returns true if the value is valid, otherwise false.
- */
-function showError(value, errorEl, errorMessage, validateEmailFn = null, onErrorCallback = null) {
-  errorEl.innerText = "";
-
-  if (validateEmailFn) {
-    if (!validateEmailFn(value)) {
-      errorEl.innerText = errorMessage;
-      if (onErrorCallback) onErrorCallback();
-      return false;
-    }
-  } else {
-    if (value === "") {
-      errorEl.innerText = errorMessage;
-      return false;
-    }
-  }
-
-  return true;
-}
+/////////////////////
 
 /* EVENT LISTENERS */
 
@@ -340,3 +240,85 @@ swiper.on("transitionEnd", function () {
 
 /* FOOTER YEAR */
 footerYear.innerText = new Date().getFullYear();
+
+/////////////////////
+
+/* FUNCTIONS */
+
+/**
+ * Sets the overflow property of the document based on the provided boolean value.
+ *
+ * @param {boolean} isOpen - If true, disables scrolling by setting overflow to hidden. If false, restores scrolling by resetting overflow properties.
+ */
+function setDocOverFlow(isOpen) {
+  if (isOpen) {
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  } else {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  }
+}
+
+/**
+ * Scrolls to contact us section of the page when called
+ */
+function showContactUs() {
+  contactUs.scrollIntoView({ behavior: "smooth" });
+}
+
+/**
+ * showLoading displays a simple spinner loader when data is being fetched or submitted.
+ * It clears the existing content of the container and replaces it with a loading spinner.
+ * @param {HTMLElement} container - The container element where the loading spinner should be displayed.
+ * @param {string} color - The color of the loading spinner, provided as a CSS-compatible color value.
+ */
+function showLoading(container, color) {
+  const loading = document.createElement("div");
+  loading.id = "loading";
+  loading.innerHTML = `<div class="spinner" style="border-left-color:${color}; border-left-width: 4px; border-left-style: solid;"></div>`;
+
+  container.innerHTML = "";
+  container.appendChild(loading);
+}
+
+/**
+ * validateEmail checks if the provided email address is in a valid format.
+ *
+ * @param {string} email - The email address to be validated.
+ * @returns {boolean} - Returns true if the email address is valid, otherwise false.
+ */
+function validateEmail(email) {
+  const emailPattern = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+  return emailPattern.test(email);
+}
+
+/**
+ * showError validates a value and displays an error message if validation fails.
+ *
+ * @param {string} value - The input value to validate.
+ * @param {HTMLElement} errorEl - The HTML element where the error message should be displayed.
+ * @param {string} errorMessage - The message to display if validation fails.
+ * @param {function} [validateEmailFn=null] - Optional function to validate the email (or other) value. If provided, it should return true if the value is valid, otherwise false.
+ * @param {function} [onErrorCallback=null] - Optional callback function that gets executed when an error occurs.
+ *
+ * @returns {boolean} - Returns true if the value is valid, otherwise false.
+ */
+function showError(value, errorEl, errorMessage, validateEmailFn = null, onErrorCallback = null) {
+  errorEl.innerText = "";
+
+  if (validateEmailFn) {
+    if (!validateEmailFn(value)) {
+      errorEl.innerText = errorMessage;
+      if (onErrorCallback) onErrorCallback();
+      return false;
+    }
+  } else {
+    if (value === "") {
+      errorEl.innerText = errorMessage;
+      return false;
+    }
+  }
+
+  return true;
+}
