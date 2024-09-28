@@ -1102,6 +1102,7 @@ footer .footer_middle {
 #newsletter input[type="submit"] {
   cursor: pointer;
   background-color: var(--lime-green);
+  color: var(--black);
   border: none;
   font-size: 18px;
   transition: 0.3s ease-in;
