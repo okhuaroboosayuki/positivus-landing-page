@@ -34,6 +34,11 @@ const newsletterError = document.getElementById("newsletter_error");
 
 const footerYear = document.getElementById("year");
 
+// for back to top
+const backToTopButton = document.getElementById("backToTop");
+
+/////////////////////
+
 /* EVENT LISTENERS */
 
 // Mobile Menu Toggle
@@ -160,6 +165,21 @@ newsletterForm.addEventListener("submit", function (e) {
   setTimeout(() => {
     newsletterForm.innerHTML = `<p class="confirmation_message" style="color: #fff; text-align: center;">You have successfully subscribed!</p>`;
   }, 2000);
+});
+
+/* BACK TO TOP */
+window.onscroll = function () {
+  if (document.body.scrollTop > 2000 || document.documentElement.scrollTop > 2000) {
+    backToTopButton.style.display = "block";
+  } else {
+    backToTopButton.style.display = "none";
+  }
+};
+backToTopButton.addEventListener("click", function () {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 });
 
 /////////////////////
