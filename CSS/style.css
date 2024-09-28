@@ -920,6 +920,7 @@ textarea {
   font-style: normal;
   resize: none;
   font-size: 16px;
+  outline: none;
 }
 
 .form_inputs button {
@@ -1061,7 +1062,8 @@ footer .footer_middle {
 .footer_middle .newsletter_sub {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 #newsletter {
@@ -1449,6 +1451,7 @@ footer .footer_bottom {
     gap: 15px;
   }
 
+  .newsletter_form_wrapper,
   #newsletter {
     width: 100%;
   }
@@ -1885,7 +1888,6 @@ footer .footer_bottom {
   .work_process_top h3 {
     text-align: center;
     width: fit-content;
-    padding: 0;
   }
 
   .work_process_bottom_box {
