@@ -1,9 +1,13 @@
 "strict";
 
 /* VARIABLES */
+// for header scroll display
+let lastScrollY = window.scrollY;
+
 //for mobile menu
 const menuIcon = document.querySelector("#hamburger_menu");
 const navListElement = document.querySelector("#list");
+const navLinks = document.querySelectorAll(".list_item a");
 const screenWidth = window.innerWidth;
 
 // for request/book button click
@@ -41,6 +45,20 @@ const backToTopButton = document.getElementById("backToTop");
 
 /* EVENT LISTENERS */
 
+// Hide/Display Header on Scroll
+window.addEventListener("scroll", () => {
+  const header = document.getElementById("header");
+
+  if (window.scrollY > lastScrollY) {
+    header.classList.add("hidden_header");
+  } else {
+    header.classList.remove("hidden_header");
+  }
+
+  // Update the last scroll position
+  lastScrollY = window.scrollY;
+});
+
 // Mobile Menu Toggle
 menuIcon.addEventListener("click", function (e) {
   e.stopPropagation();
@@ -75,7 +93,6 @@ document.addEventListener("click", function (e) {
   }
 });
 // when mobile menu link is clicked, close menu
-const navLinks = document.querySelectorAll(".list_item");
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     if (menuIcon.classList.contains("open")) {
@@ -182,8 +199,6 @@ backToTopButton.addEventListener("click", function () {
   });
 });
 
-/////////////////////
-
 /* SCROLL HANDLING */
 
 // for client scroll
@@ -275,10 +290,8 @@ footerYear.innerText = new Date().getFullYear();
  */
 function setDocOverFlow(isOpen) {
   if (isOpen) {
-    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
   } else {
-    document.documentElement.style.overflow = "";
     document.body.style.overflow = "";
   }
 }
