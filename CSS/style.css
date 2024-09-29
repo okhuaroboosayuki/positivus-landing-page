@@ -1167,8 +1167,6 @@ footer .footer_bottom {
   background-color: rgba(41, 42, 50, 0.9);
   color: #fff;
   border: none;
-  outline: none;
-  cursor: pointer;
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 5px;
@@ -1791,6 +1789,11 @@ footer .footer_bottom {
   .swiper_card {
     width: 100% !important;
     padding: 0.5rem;
+  }
+
+  #backToTop {
+    right: 1rem;
+    padding: 10px;
   }
 }
 
