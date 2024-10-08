@@ -18,7 +18,6 @@ const contactUs = document.querySelector("#contact-us");
 
 // for scroll reveal handling
 const clientRow = document.querySelector(".client_row");
-const hiddenEl = document.querySelectorAll(".hidden");
 
 // for work process accordion setup
 const wpAccordionTop = document.querySelectorAll(".box-top");
@@ -215,16 +214,6 @@ window.addEventListener("scroll", function () {
     clientRow.style.transform = `translateX(-${translateValue}px)`;
   }
 });
-
-// revealing hidden section on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) entry.target.classList.add("show");
-    else entry.target.classList.remove("show");
-  });
-});
-
-hiddenEl.forEach((el) => observer.observe(el));
 
 /////////////////////
 
