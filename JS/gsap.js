@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const caseStudiesCardContainer = section.querySelectorAll(".case-studies_bottom-card_container");
     const workProcessBottom = section.querySelector(".work_process_bottom");
     const workProcessBottomBox = section.querySelectorAll(".work_process_bottom_box");
+    const teamMembersBottom = section.querySelector(".team_members_bottom");
+    const teamMembersCard = section.querySelectorAll(".profile_card");
 
     const toggleActionsOption = "play none none none";
     function tl(trigger, { start = "top 10%", end = "bottom 10%", toggleActions = "play none none reverse" } = {}) {
@@ -96,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Case Studies Section Animations
-
     caseStudiesCardContainer.forEach((container) => {
       if (isLargeScreen) {
         tl(container.parentElement, { start: "20%" }).to(caseStudiesCardContainer, {
@@ -118,23 +119,70 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Work Process Section Animations
-
-    if (workProcessBottom) {
-      workProcessBottomBox.forEach((box) => {
-        tl(workProcessBottom, { start: "-30%", toggleActions: "play none none none" }).from(box, 1, {
-          opacity: 0,
-          y: 100,
-          stagger: {
-            each: 0.1,
-          },
-        });
-
-        tl(box, { start: "-20%" }).to(box, {
-          opacity: 0,
-          translateX: () => (Math.random() > 0.5 ? "100px" : "-100px"),
-          ease: "sine.out",
-        });
+    workProcessBottomBox.forEach((box) => {
+      tl(workProcessBottom, { start: "-40%", toggleActions: toggleActionsOption }).from(box, 1, {
+        opacity: 0,
+        y: 100,
+        stagger: {
+          each: 0.1,
+        },
       });
-    }
+
+      tl(box, { start: "-20%" }).to(box, {
+        opacity: 0,
+        translateX: () => (Math.random() > 0.5 ? "100px" : "-100px"),
+        ease: "sine.out",
+      });
+    });
+
+    // Team Members Section Animation
+    teamMembersCard.forEach((card, index) => {
+      if (isLargeScreen) {
+        // create an array of different animation objects
+        const animations = [
+          { translateY: "100px", opacity: 0, ease: "power2.out", duration: 0.5 },
+          { translateX: "100px", opacity: 0, ease: "power2.out", duration: 0.7 },
+          { rotate: 360, scale: 0.5, opacity: 0, ease: "expo.out", duration: 1 },
+          { scale: 1.5, opacity: 0, ease: "expo.inOut", duration: 0.8 },
+        ];
+
+        // Pick a different animation for each card
+        const animation = animations[index % animations.length];
+
+        tl(teamMembersBottom, { start: "-40%" }).from(card, animation);
+
+        // animate when leaving the target
+        tl(card).to(card, {
+          opacity: 0,
+          translateX: "100px",
+          ease: "ease.out",
+          duration: 0.5,
+          delay: 0.3,
+        });
+      } else {
+        tl(card, { start: "20%" }).to(card, {
+          opacity: 0,
+          translateY: "-100px",
+          ease: "ease.inOut",
+          duration: 0.5,
+          delay: 0.3,
+        });
+      }
+    });
+
+    // Testimonials Section Animations
+    const testimonialsBottom = section.querySelector(".testimonials_bottom");
+
+    tl(testimonialsBottom, { start: "-70%" }).from(testimonialsBottom, {
+      opacity: 0,
+      y: 100,
+      ease: "ease.in",
+    });
+
+    tl(testimonialsBottom, { start: "40%" }).to(testimonialsBottom, {
+      opacity: 0,
+      y: -100,
+      ease: "ease.out",
+    });
   });
 });
