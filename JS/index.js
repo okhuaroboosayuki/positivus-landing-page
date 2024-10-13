@@ -22,6 +22,10 @@ const clientRow = document.querySelector(".client_row");
 // for work process accordion setup
 const wpAccordionTop = document.querySelectorAll(".box-top");
 
+// for team members profile card display
+const profileContainerTwo = document.querySelector(".profile_container_2");
+const showAllTeamBtn = document.getElementById("see-all-team");
+
 // for contact form functionality
 const formWrapper = document.querySelector(".form_wrapper");
 const contactForm = document.querySelector("#contact");
@@ -236,6 +240,18 @@ wpAccordionTop.forEach((accordion) => {
       accordion.classList.toggle("active");
     }
   });
+});
+
+/////////////////////
+
+/* TEAM MEMBERS PROFILE CARD DISPLAY */
+showAllTeamBtn.addEventListener("click", function () {
+  profileContainerTwo.classList.toggle("active");
+
+  const isActive = profileContainerTwo.classList.contains("active");
+  console.log(isActive);
+
+  showAllTeamBtn.innerText = isActive ? "Hide all team" : "See all team";
 });
 
 /////////////////////
