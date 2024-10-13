@@ -249,7 +249,6 @@ showAllTeamBtn.addEventListener("click", function () {
   profileContainerTwo.classList.toggle("active");
 
   const isActive = profileContainerTwo.classList.contains("active");
-  console.log(isActive);
 
   showAllTeamBtn.innerText = isActive ? "Hide all team" : "See all team";
 });
