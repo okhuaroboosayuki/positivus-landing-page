@@ -46,13 +46,26 @@ input {
   font-size: 16px;
 }
 
-.hidden {
-  opacity: 0;
-  transition: all 2.5s;
+/* for lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
 }
 
-.show {
-  opacity: 1;
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
 
 /* header */
@@ -158,6 +171,7 @@ main {
   display: flex;
   justify-content: center;
   gap: 6.3rem;
+  overflow: hidden;
 }
 
 .hero_left {
@@ -603,17 +617,6 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.profile_container_2 {
-  opacity: 0;
-  margin-top: -23rem;
-  transition: 0.5s ease-out;
-}
-
-.profile_container_2.active {
-  opacity: 1;
-  margin-top: 0;
 }
 
 .team_members_profile-container .profile_card {
@@ -1352,10 +1355,6 @@ footer .footer_bottom {
     flex-direction: column;
   }
 
-  .profile_container_2 {
-    margin-top: -70rem;
-  }
-
   .team_members_profile-container .profile_card {
     width: 867px;
   }
@@ -1779,10 +1778,6 @@ footer .footer_bottom {
     display: none;
   }
 
-  .profile_container_2 {
-    margin-top: -55rem;
-  }
-
   .team_members_profile-container .profile_card {
     width: 100%;
     padding: 0 4rem;
@@ -2010,10 +2005,6 @@ footer .footer_bottom {
 
   .team_members {
     padding: 0 20px;
-  }
-
-  .profile_container_2 {
-    margin-top: -63rem;
   }
 
   .team_members_profile-container .profile_card {
