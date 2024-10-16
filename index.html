@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 />
     <link rel="shortcut icon" href="/IMAGES/Positivus_Favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="/CSS/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -379,7 +379,7 @@
 
         <div class="team_members_bottom">
           <div class="team_members_profile-container">
-            <div class="profile_container_1">
+            <div class="profile_container_1" id="profileContainer">
               <div class="profile_card">
                 <div class="profile_card_top">
                   <div class="profile_card_top_img">
@@ -453,7 +453,7 @@
               </div>
             </div>
 
-            <div class="profile_container_2">
+            <div class="profile_container_2" id="profileContainer">
               <div class="profile_card">
                 <div class="profile_card_top">
                   <div class="profile_card_top_img">
@@ -530,8 +530,6 @@
               </div>
             </div>
           </div>
-
-          <button id="see-all-team">See all team</button>
         </div>
       </section>
 
@@ -752,10 +750,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
-    <script async src="/JS/index.js"></script>
+    <script src="/JS/index.js"></script>
     <script src="/JS/gsap.js"></script>
   </body>
 </html>
