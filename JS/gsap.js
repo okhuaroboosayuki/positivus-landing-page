@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   lenis.on("scroll", ScrollTrigger.update);
 
   gsap.ticker.add((time) => {
-    lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+    lenis.raf(time * 1000);
   });
 
   // Disable lag smoothing in GSAP to prevent any delay in scroll animations
@@ -44,20 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const testimonialsBottom = section.querySelector(".testimonials_bottom");
 
     const contactUsBottom = section.querySelector(".contact_us_bottom");
-    const contactForm = section.querySelector(".form_wrapper");
-    const contactUsImg = section.querySelector(".image_wrapper img");
-
-    const toggleActionsOption = "play none none none";
-    function tl(trigger, { start = "top 10%", end = "bottom 10%", toggleActions = "play none none reverse" } = {}) {
-      return gsap.timeline({
-        scrollTrigger: {
-          trigger: trigger,
-          start: start,
-          end: end,
-          toggleActions: toggleActions,
-        },
-      });
-    }
 
     // Hero Section Animations:
     // if the current section is the hero section, & the screenWidth is > 900, apply the animation based on the current section; else, apply based on each of the current section's child elements.
@@ -71,10 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
           .to(heroImg, { opacity: 0, translateX: "100px", ease: "expo.in", duration: 0.5 })
           .to(btn, { opacity: 0, translateY: "100px", ease: "expo.in" });
       } else {
-        tl(heading).to(heading, { opacity: 0, translateY: "-100px", ease: "expo.in", duration: 0.5 });
-        tl(subTitle).to(subTitle, { opacity: 0, translateX: "-100px", ease: "expo.in" });
-        tl(heroImg).to(heroImg, { opacity: 0, translateX: "100px", ease: "expo.in", duration: 0.5 });
-        tl(btn).to(btn, { opacity: 0, translateY: "100px", ease: "expo.in" });
+        tl(heading).to(heading, { opacity: 0, translateY: "-100px", ease: "expo.inOut", duration: 0.5 });
+        tl(subTitle).to(subTitle, { opacity: 0, translateY: "-100px", ease: "expo.inOut" });
+        tl(heroImg).to(heroImg, { opacity: 0, translateY: "-100px", ease: "expo.inOut", duration: 0.5 });
+        tl(btn).to(btn, { opacity: 0, translateY: "-100px", ease: "expo.inOut" });
       }
     } else {
       // General Section Animations
@@ -82,17 +68,17 @@ document.addEventListener("DOMContentLoaded", function () {
         tl(heading).to(heading, {
           opacity: 0,
           translateY: "-100px",
-          ease: "expo.in",
+          ease: "expo.inOut",
           duration: 0.5,
         });
       if (subTitle)
         tl(subTitle).to(subTitle, {
           opacity: 0,
-          translateX: "-100px",
-          ease: "expo.in",
+          translateY: "-100px",
+          ease: "expo.inOut",
           duration: 1,
         });
-      if (btn) tl(btn).to(btn, { opacity: 0, translateY: "100px", ease: "expo.in" });
+      if (btn) tl(btn).to(btn, { opacity: 0, translateY: "-100px", ease: "expo.inOut" });
     }
 
     // Client Row Animations
@@ -101,30 +87,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Service Cards Animations:
-    // if the screen width is less than 500, it loops through each service card to apply the animation; else it loops through each service card container to apply the animation
     if (serviceCardsContainer.length > 0) {
-      serviceCardsContainer.forEach((container) => {
-        container.style.overflow = "hidden";
-      });
       serviceCards.forEach((card) => {
         tl(card, { start: "top top", end: "+=300" }).to(card, {
           opacity: 0,
-          translateX: () => (Math.random() > 0.5 ? "100px" : "-100px"),
-          ease: "expo.in",
-          stagger: { each: 0.2, from: "power2.inOut" },
-          delay: 0.2,
+          translateY: "-100px",
+          ease: "expo.inOut",
+          stagger: 0.2,
+          duration: 0.5,
+          delay: 0.5,
         });
-
-        const cardImg = card.querySelector(".illustration");
-        if (cardImg) {
-          tl(cardImg).to(cardImg, {
-            opacity: 0,
-            translateX: () => (Math.random() > 0.5 ? "100px" : "-100px"),
-            ease: "expo.in",
-            stagger: { each: 0.2, from: "power2.inOut" },
-            delay: 0.2,
-          });
-        }
       });
     }
 
@@ -152,8 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           tl(container).to(container, {
             opacity: 0,
-            translateX: () => (Math.random() > 0.5 ? "100px" : "-100px"),
-            ease: "expo.in",
+            translateY: "-100px",
+            ease: "expo.inOut",
             stagger: 0.2,
             delay: 0.5,
           });
@@ -164,18 +136,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Work Process Section Animations
     if (workProcessBottom && workProcessBottomBox.length > 0) {
       workProcessBottomBox.forEach((box) => {
-        tl(workProcessBottom, { start: "-40%", toggleActions: toggleActionsOption }).from(box, 1, {
-          opacity: 0,
-          y: 100,
-          stagger: {
-            each: 0.1,
-          },
-        });
-
         tl(box, { start: "-20%" }).to(box, {
           opacity: 0,
-          translateX: () => (Math.random() > 0.5 ? "100px" : "-100px"),
-          ease: "sine.out",
+          translateY: "-100px",
+          ease: "expo.inOut",
         });
       });
     }
@@ -219,13 +183,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Testimonials Section Animations
     if (testimonialsBottom) {
-      tl(testimonialsBottom, { start: "-70%" }).from(testimonialsBottom, {
-        opacity: 0,
-        y: 100,
-        ease: "ease.in",
-        duration: 0.5,
-      });
-
       tl(testimonialsBottom, { start: "40%" }).to(testimonialsBottom, {
         opacity: 0,
         y: -100,
@@ -235,32 +192,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Contact Us Section Animations
     if (contactUsBottom) {
-      tl(contactUsBottom, { start: "-50%" })
-        .from(contactUsBottom, {
-          opacity: 0,
-          y: 100,
-          ease: "ease.in",
-          duration: 0.3,
-        })
-        .from(contactForm, {
-          opacity: 0,
-          y: 100,
-          ease: "ease.in",
-          duration: 0.2,
-          delay: 0.1,
-        })
-        .from(contactUsImg, {
-          opacity: 0,
-          x: 100,
-          ease: "ease.in",
-          duration: 0.2,
-          delay: 0.2,
-        });
-
       tl(contactUsBottom, { start: "60%" }).to(contactUsBottom, {
         opacity: 0,
         y: -100,
         ease: "ease.out",
+      });
+    }
+
+    /**
+     * Creates a GSAP timeline with a ScrollTrigger configuration.
+     *
+     * @param {Element} trigger - The DOM element to trigger the animation on scroll.
+     * @param {Object} [options={}] - Configuration options for the scroll trigger.
+     * @param {string} [options.start="top 10%"] - The start position of the scroll trigger relative to the viewport.
+     * @param {string} [options.end="bottom 10%"] - The end position of the scroll trigger relative to the viewport.
+     * @param {string} [options.toggleActions="play none none reverse"] - The toggle actions for the scroll-triggered animation.
+     * @returns {gsap.core.Timeline} - The configured GSAP timeline.
+     */
+    function tl(trigger, { start = "top 10%", end = "bottom 10%", toggleActions = "play none none reverse" } = {}) {
+      return gsap.timeline({
+        scrollTrigger: {
+          trigger: trigger,
+          start: start,
+          end: end,
+          toggleActions: toggleActions,
+        },
       });
     }
   });
