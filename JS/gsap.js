@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
           .to(btn, { opacity: 0, translateY: "100px", ease: "expo.in" });
       } else {
         tl(heading).to(heading, { opacity: 0, translateY: "-100px", ease: "expo.inOut", duration: 0.5 });
-        tl(subTitle).to(subTitle, { opacity: 0, translateY: "-100px", ease: "expo.inOut" });
+        tl(subTitle).to(subTitle, { opacity: 0, translateY: "-100px", ease: "expo.inOut", duration: 0.5 });
         tl(heroImg).to(heroImg, { opacity: 0, translateY: "-100px", ease: "expo.inOut", duration: 0.5 });
         tl(btn).to(btn, { opacity: 0, translateY: "-100px", ease: "expo.inOut" });
       }
