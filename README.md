@@ -1,6 +1,6 @@
 # Positivus
 
-Positivus is a fictional, forward-thinking digital marketing agency dedicated to navigating the digital landscape for success; helping businesses grow and succeed online through a range of services.
+Positivus is a forward-thinking digital marketing agency dedicated to navigating the digital landscape for success; helping businesses grow and succeed online through a range of services.
 
 ---
 
